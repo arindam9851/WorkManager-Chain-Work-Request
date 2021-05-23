@@ -19,11 +19,7 @@ import java.util.*
 
 class SaveImageToFileWorker(context: Context, workerParams: WorkerParameters):Worker(context, workerParams) {
 
-    private val Title = "Blurred Image"
-    private val dateFormatter = SimpleDateFormat(
-            "yyyy.MM.dd 'at' HH:mm:ss z",
-            Locale.getDefault()
-    )
+
 
     override fun doWork(): Result {
 
@@ -42,9 +38,11 @@ class SaveImageToFileWorker(context: Context, workerParams: WorkerParameters):Wo
 
             if (!imageUrl.isNullOrEmpty()) {
 
+                // Can pass the data by creating Data builder
                 val outputData= Data.Builder()
                         .putString(KEY_IMAGE_URI,imageUrl)
                         .build()
+                //Converts a list of pairs to a Data object. If multiple pairs have the same key,
                 val output = workDataOf(KEY_IMAGE_URI to imageUrl)
 
                 Result.success(output)
